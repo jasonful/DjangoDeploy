@@ -8,13 +8,20 @@ It will install and configure a full stack including Postgres, Nginx, Gunicorn, 
 
 # Instructions
 
+
+- On your server, in some convenient location, do
+```
+git clone https://github.com/jasonful/DjangoDeploy.git
+```
+
 - Edit the three .env files to fill in your own info, and set your own passwords.  The files are self-documenting.
-- Make all the files from this repository (namely, example.com, local.env, production.env, setup.env, setup.sh, startservers.sh, unsetup.sh) available to your server.  Doesn't really matter how: If it's a physical machine, you can plug in a USB stick.  If it's a MultiPass instance, you can mount it.  If it's a VPS, you can rsync or scp the files.  Because the env files contain secrets, you should delete/unmount them when all done.  Versions you need will be placed in your django directory under /env and you should treat that directory as secret.
 - Run
 ```
     sudo bash setup.sh
 ```
-- If setup.sh succeeds, then your server is all set up, and you will be logged in as $DJANGO_USER.  To start serving the website:
-```
-    bash startservers.sh
-```
+- Assuming setup.sh succeeds, then your server is all set up, and you will be logged in as $DJANGO_USER.  
+- At this point, because the env files contain secrets, you should delete your clone of DjangoDeploy. Everything you still need will have been placed in your django directory under /env and you should treat that directory as secret, i.e., do not add it to your repo.
+- To start serving the website:
+<pre>
+    bash ~/django/<i>myapp</i>/env/startservers.sh
+</pre>
